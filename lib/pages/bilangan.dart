@@ -34,27 +34,22 @@ class _checkNumberTypeState extends State<checkNumberType> {
       if (number is int || number == number.roundToDouble()) {
         int n = number.toInt();
 
-        // Cek bilangan prima
         if (n > 1 && _isPrime(n)) {
           resultTypes.add('Bilangan Prima');
         }
 
-        // Cek bilangan cacah (>= 0 dan bulat)
         if (n >= 0) {
           resultTypes.add('Bilangan Cacah');
         }
 
-        // Cek bilangan bulat positif atau negatif
         if (n > 0) {
           resultTypes.add('Bilangan Bulat Positif');
         } else if (n < 0) {
           resultTypes.add('Bilangan Bulat Negatif');
         }
 
-        // Tambahkan jika hanya bilangan bulat
         resultTypes.add('Bilangan Bulat');
       } else {
-        // Jika desimal
         resultTypes.add('Bilangan Desimal');
       }
 
@@ -117,23 +112,35 @@ class _checkNumberTypeState extends State<checkNumberType> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _checkNumber,
-              child: const Text('Cek Jenis Bilangan'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+              ),
+              child: const Text(
+                'Cek Jenis Bilangan',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             const SizedBox(height: 20),
             if (_result.isNotEmpty)
               Card(
-                color: Colors.lightBlue.shade50,
+                color: Colors.blueAccent.shade100,
                 elevation: 2,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     _result,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black87,
-                    ),
+                    style: const TextStyle(fontSize: 16, color: Colors.black87),
                     textAlign: TextAlign.center,
                   ),
                 ),
